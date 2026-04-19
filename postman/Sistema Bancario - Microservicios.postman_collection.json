@@ -1,0 +1,511 @@
+{
+	"info": {
+		"_postman_id": "88009627-4989-4c84-bfa8-c2acbf3bb540",
+		"name": "Sistema Bancario - Microservicios",
+		"description": "Colecci�n completa de endpoints para el sistema bancario con microservicios de Clientes (puerto 8081) y Cuentas (puerto 8082). Todas las respuestas usan el formato GenericResponseDto con campos: item, message, status.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Crear Cliente - Hombre",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Joan Garcia\",\n  \"gender\": \"MASCULINO\",\n  \"age\": 30,\n  \"identification\": \"1234567890\",\n  \"address\": \"Calle 1 y call2\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "{{customer_host}}/clientes",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Cliente - Mujer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fatima Montalvo\",\n  \"gender\": \"FEMENINO\",\n  \"age\": 25,\n  \"identification\": \"0987654321\",\n  \"address\": \"Calle 27 y calle 28\",\n  \"phone\": \"097548965\",\n  \"password\": \"5678\"\n}"
+						},
+						"url": {
+							"raw": "{{customer_host}}/clientes",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Todos los Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{customer_host}}/clientes",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{customer_host}}/clientes/1",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cliente por custmer id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{customer_host}}/clientes/buscar/34E3337C",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes",
+								"buscar",
+								"34E3337C"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cliente (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Joan Garcia Actualizado\",\n  \"gender\": \"MASCULINO\",\n  \"age\": 31,\n  \"identification\": \"1234567890\",\n  \"address\": \"calle 1 y calle 2\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\",\n  \"status\": true\n}"
+						},
+						"url": {
+							"raw": "{{customer_host}}/clientes/1",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cliente Parcial (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"address\": \"Nueva Direccion 123\",\n  \"phone\": \"099999999\"\n}"
+						},
+						"url": {
+							"raw": "{{customer_host}}/clientes/1",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{customer_host}}/clientes/1",
+							"host": [
+								"{{customer_host}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "CRUD de clientes - Customer Microservice (Puerto 8081)"
+		},
+		{
+			"name": "Cuentas",
+			"item": [
+				{
+					"name": "Crear Cuenta Ahorros",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"CORRIENTE\",\n  \"initialBalance\": 4000.00,\n  \"status\": true,\n  \"customerId\": \"34E3337C\"\n}"
+						},
+						"url": {
+							"raw": "{{account_host}}/cuentas",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Cuenta Corriente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountNumber\": \"225487\",\n  \"accountType\": \"CORRIENTE\",\n  \"initialBalance\": 100.00,\n  \"status\": true,\n  \"customerId\": \"DEF67890\"\n}"
+						},
+						"url": {
+							"raw": "{{account_host}}/cuentas",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Todas las Cuentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/cuentas",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cuenta por Numero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/cuentas/478758",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cuentas por Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/cuentas/cliente/34E3337C",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas",
+								"cliente",
+								"34E3337C"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"CORRIENTE\",\n  \"initialBalance\": 1000.00,\n  \"status\": true,\n  \"customerId\": \"34E3337C\"\n}"
+						},
+						"url": {
+							"raw": "{{account_host}}/cuentas/478758",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cuenta Parcial (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": false\n}"
+						},
+						"url": {
+							"raw": "{{account_host}}/cuentas/478758",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/cuentas/478758",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Gesti�n de cuentas - Account Microservice (Puerto 8082). accountType acepta: AHORROS o CORRIENTE."
+		},
+		{
+			"name": "Movimientos",
+			"item": [
+				{
+					"name": "Crear Movimiento - Deposito 600",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountNumber\": \"478758\",\n  \"value\": -600.00\n}"
+						},
+						"url": {
+							"raw": "{{account_host}}/movimientos",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Todos los Movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/movimientos",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Movimiento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/movimientos/1",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Movimientos por Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/movimientos/cuenta/478758",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"movimientos",
+								"cuenta",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Gesti�n de movimientos - Account Microservice (Puerto 8082). Valor positivo = Deposito, valor negativo = Retiro."
+		},
+		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "Generar Reporte por Cliente y Fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{account_host}}/reportes?clienteId=34E3337C&fechaInicio=2026-01-01&fechaFin=2026-12-31",
+							"host": [
+								"{{account_host}}"
+							],
+							"path": [
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "34E3337C"
+								},
+								{
+									"key": "fechaInicio",
+									"value": "2026-01-01"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2026-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Reportes de estado de cuenta - Account Microservice (Puerto 8082). Estructura anidada: cliente -> cuentas -> movimientos."
+		}
+	],
+	"variable": [
+		{
+			"key": "customer_host",
+			"value": "http://localhost:8081"
+		},
+		{
+			"key": "account_host",
+			"value": "http://localhost:8082"
+		}
+	]
+}
